@@ -6,8 +6,7 @@ function getAllDirectors(array) {
 
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(array, director) {
-  let result = [];
-  result = array.filter((e) => e.director === director);
+  const result = array.filter((e) => e.director === director);
   return result;
 }
 
@@ -22,7 +21,7 @@ function moviesAverageOfDirector(array, director) {
 
 // Exercise 4:  Alphabetic order by title
 function orderAlphabetically(array) {
-  result = array.map((x) => x.title).sort();
+  const result = array.map((x) => x.title).sort();
   return result.slice(0, 20);
 }
 // Exercise 5: Order by year, ascending
@@ -56,17 +55,33 @@ function moviesAverageByCategory(array, genre) {
   });
   const suma = movies.reduce((a, b) => a + b.score, 0);
   let long = movies.length;
-  let result = suma / long;
+  const result = suma / long;
   return Number(result.toFixed(2));
 }
 
 //---NIVELL 2---
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes(array) {}
+function hoursToMinutes(array) {
+  const newArray = array.map((movie) => {
+    const newMovie = { ...movie };
+    const duracion = newMovie.duration.split(' ');
+    const horas = Number(duracion[0].replace('h', ''));
+    let minuts = 0;
+    if (duracion.length > 1) {
+      minuts = Number(duracion[1].replace('min', ''));
+    }
+    const result = horas * 60 + minuts;
+    newMovie.duration = result;
+    return newMovie;
+  });
+  return newArray;
+}
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {}
+function bestFilmOfYear() {
+  
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
